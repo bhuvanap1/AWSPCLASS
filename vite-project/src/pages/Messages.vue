@@ -1,10 +1,31 @@
 <script setup lang="ts">
-
+import { ref, reactive, onMounted } from 'vue';
+    const message = ref( 'Hi Sai' );
+    const currentTab = ref( 'All' );
+    const prompt = ref( 'Waiting for input...' );
+    const notifications = reactive( [
+        { type: 'primary', message: 'This is a primary notification' },
+        { type: 'link', message: 'This is a link notification' },
+        { type: 'success', message: ' you did it!' },
+        { type: 'warning', message: 'almost did it!' },
+        { type: 'danger', message: 'u failed' },
+    ] );
+    function cardClick() {
+        message.value = 'You clicked the card!';
+    }
+    function close(index: number) {
+        notifications.splice(index, 1);
+    }
+                
+    onMounted(() => {
+        setInterval(() => {
+            prompt.value += '.';
+        }, 500);
+    });
 </script>
 
 <template>
-
- <div class="">
+                <div class="section">
                 <div class="columns">
 
                     <div class="column is-one-quarter">
@@ -44,40 +65,44 @@
                           </aside>
                     </div>
 
-                    <div class="column is-half content">
+                    <div class="column is-half">
                         <h1 class="title">Bulma Examples</h1>
                         <h2 class="subtitle">Some examples of using Bulma</h2> 
-                        <div class="card" @click="cardClick">
-                          <button class="delete"></button>
-                          <div class="card-image">
-                            <figure class="image is-4by3">
-                              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                          </div>
-                          <div class="card-content">
-                            <div class="media">
-                              <div class="media-left">
-                                <figure class="image is-48x48">
-                                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                </figure>
-                              </div>
-                              <div class="media-content">
-                                <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
-                              </div>
-                            </div>
-                        
-                            <div class="content">
-                              {{message}} <a>@bulmaio</a>.
-                              <a href="#">#css</a> <a href="#">#responsive</a>
-                              <br>
-                              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                            </div>
-                          </div>
-                        </div>
 
-                        <div v-for="(x , i) in notifications" :class="`notification is-${x.type}`">
-                            <button class="delete" @click="close(i)"></button>
+
+                        <div class="card" @click="cardClick"  >
+                            <div class="card-image">
+                              <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                              </figure>
+                            </div>
+                                <button class="delete"></button>
+                            <div class="card-content">
+                              <div class="media">
+                                <div class="media-left">
+                                  <figure class="image is-48x48">
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                  </figure>
+                                </div>
+                                <div class="media-content">
+                                  <p class="title is-4">John Smith</p>
+                                  <p class="subtitle is-6">@johnsmith</p>
+                                </div>
+                              </div>
+                          
+                              <div class="content">
+                                {{ message }} 
+                                <br />
+                                <a>@bulmaio</a>.
+                                <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                              </div>
+                            </div>
+                          </div>
+
+                        <div v-for=" (x, i) in notifications" :class="`notification is-${x.type}`">
+                            <button class="delete" @click="close(i)" ></button>
                             {{ x.message }}
                         </div>
                         
@@ -90,11 +115,11 @@
                               Primary
                             </p>
                             <p class="panel-tabs">
-                              <a :class="{ 'is-active': currentTab == 'All' }" @click=" currentTab = 'All'">All</a>
-                              <a :class="{ 'is-active': currentTab == 'Public' }" @click=" currentTab = 'Public'">Public</a>
-                              <a :class="{ 'is-active': currentTab == 'Private' }" @click=" currentTab = 'Private'">Private</a>
-                              <a :class="{ 'is-active': currentTab == 'Sources' }" @click=" currentTab = 'Sources'">Sources</a>
-                              <a :class="{ 'is-active': currentTab == 'Forks' }" @click=" currentTab = 'Forks'">Forks</a>
+                              <a :class="{ 'is-active': currentTab == 'All' }" @click=" currentTab = 'All' " >All</a>
+                              <a :class="{ 'is-active': currentTab == 'Public' }" @click=" currentTab = 'Public' " >Public</a>
+                              <a :class="{ 'is-active': currentTab == 'Private' }" @click=" currentTab = 'Private' " >Private</a>
+                              <a :class="{ 'is-active': currentTab == 'Sources' }" @click=" currentTab = 'Sources' " >Sources</a>
+                              <a :class="{ 'is-active': currentTab == 'Forks' }" @click=" currentTab = 'Forks' " >Forks</a>
                             </p>
                             <div class="panel-block">
                               <p class="control has-icons-left">
@@ -132,8 +157,13 @@
                     </div>
                 </div>
             </div>
+  
 </template>
 
 <style>
-
+        .card .delete {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+        }
 </style>

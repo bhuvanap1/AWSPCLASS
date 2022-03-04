@@ -3,11 +3,12 @@ import {createRouter,createWebHistory, RouteRecord, RouteRecordRaw } from "vue-r
 import Home from'../pages/Home.vue';
 import Messages from'../pages/Messages.vue';
 import Generic from'../pages/Generic.vue';
+import login from'../pages/login.vue';
 const routes: RouteRecordRaw[] = [
   { path: '/', component: Home},
  { path: '/about', component: Generic, props:{title:'About Page'} },
  { path: '/login', component: Generic, props:{title:'login'} },
- { path: '/about', component: Generic, props:{title:'About Page'} },
+ { path: '/about', component:login },
  { path: '/about', component: Generic, props:{title:'About Page'} },
   { path: '/messages', component: Messages },
   
@@ -21,5 +22,13 @@ const router =createRouter({
   history:createWebHistory(),
   routes,
   linkActiveClass:'is-active' // short for `routes: routes`
+})
+router .beforeEach((to, from)=>{
+  if(['/messages'].includes(to.path)){
+    if(!sessionStorage.user){
+      return '/login';
+
+    }
+  }
 })
 export default router;

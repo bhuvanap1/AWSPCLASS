@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import Nav from './components/Nav.vue';
-
 </script>
 
 <template>
-<Nav />
+    <Nav />
 
- <div class="container">
-   <route-view/>
- </div>
+    <div class="container">
+        <router-view />
+    </div>
 
+    
 </template>
 
 <style>
-
 </style>
