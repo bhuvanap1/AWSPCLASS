@@ -13,3 +13,7 @@ import { defineProps } from "vue";
         <h1 class="title">{{ props.title }}</h1>
     </div>
 </template>
+
+
+<style scoped>
+</style>

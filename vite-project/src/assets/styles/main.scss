@@ -1,5 +1,13 @@
-.navbar .is-active{
-    border-color: blue;
-    border-bottom-width:3px;
-    
-}
+.navbar {
+
+    .is-active {
+       border-color: #2e0563;
+       border-bottom-width: 3px;
+       border-bottom-style: solid;
+     }
+   }
+   
+   .section {
+       padding-left: 0;
+       padding-right: 0;
+   }
