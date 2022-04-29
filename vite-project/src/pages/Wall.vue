@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
-import Messages from '../components/Messages.vue';
-    const message = ref( 'Hello Vue!' );
-    const currentTab = ref( 'All' );
-    const prompt = ref( 'Waiting for input...' );
-    const notifications = reactive( [
-        { type: 'primary', message: 'This is a primary notification' },
-        { type: 'link', message: 'This is a link notification' },
-        { type: 'success', message: 'Yay you did it!' },
-        { type: 'warning', message: 'Uh Oh! Watch out!' },
-        { type: 'danger', message: 'I cant believe you just did that!' },
-    ] );
-    function cardClick() {
-        message.value = 'You clicked the card!';
-    }
-    function close(index: number) {
-        notifications.splice(index, 1);
-    }
-                
-    onMounted(() => {
-        setInterval(() => {
-            prompt.value += '.';
-        }, 500);
-    });
+import { reactive } from 'vue'
+    import { Post, usePosts } from "../models/posts";    
+    import PostView from "../components/PostView.vue";
+    import { useRoute } from "vue-router";
+    import PostEdit from "../components/PostEdit.vue";
+    import { useSession } from "../models/session";
+
+    const route = useRoute();
+
+    const posts = usePosts();
+    posts.fetchPosts(route.params.handle as string);
+
+    const session = useSession();
+
+    const newPost = reactive<Post>( {  src: "", caption: "", owner: "", comments: [], likes: [], isPublic: false, user: session.user  }); 
+
+    const currentTab = "All";
+    const prompt = "What's on your mind?";
 </script>
 
 <template>
@@ -67,46 +61,15 @@ import Messages from '../components/Messages.vue';
                     </div>
 
                     <div class="column is-half">
-                        <h1 class="title">Bulma Examples</h1>
-                        <h2 class="subtitle">Some examples of using Bulma</h2> 
 
-
-                        <div class="card" @click="cardClick"  >
-                            <div class="card-image">
-                              <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                              </figure>
-                            </div>
-                                <button class="delete"></button>
-                            <div class="card-content">
-                              <div class="media">
-                                <div class="media-left">
-                                  <figure class="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                  </figure>
-                                </div>
-                                <div class="media-content">
-                                  <p class="title is-4">John Smith</p>
-                                  <p class="subtitle is-6">@johnsmith</p>
-                                </div>
-                              </div>
-                          
-                              <div class="content">
-                                {{ message }} 
-                                <br />
-                                <a>@bulmaio</a>.
-                                <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                              </div>
-                            </div>
-                          </div>
-
-                        <Messages />
+                        <post-edit :post="newPost" @save="posts.createPost(newPost)" ></post-edit>
+                        <post-view v-for="post in posts.list" :key="post._id" :post="post" ></post-view>
                         
                     </div>
                        
                     <div class="column is-one-quarter">
+
+                        <post-view :post="newPost" ></post-view>
                         
                         <article class="panel is-primary">
                             <p class="panel-heading">
@@ -164,4 +127,5 @@ import Messages from '../components/Messages.vue';
             right: 0.5rem;
             top: 0.5rem;
         }
+
 </style>

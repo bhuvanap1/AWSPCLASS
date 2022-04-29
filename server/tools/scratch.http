@@ -1,0 +1,62 @@
+http://localhost:3001
+
+###
+GET http://localhost:3001/api/users/
+Authorization: bearer {{ login.response.body.data.token }}
+
+###
+GET http://localhost:3001/api/users/625359480694a2e572214279
+
+###
+GET http://localhost:3001/api/users/handle/vp
+
+###
+
+DELETE  http://localhost:3001/api/users/625359480694a2e572214278
+Authorization: bearer  {{ login.response.body.data.token }}
+
+###
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Donald",
+  "lastName": "Christian",
+  "handle": "newpaltz_benevolent",
+  "password": "hugo",
+  "email": "president@newpaltz.edu",
+  "pic": "https://randomuser.me/api/portraits/men/2.jpg"
+}
+
+###
+PATCH http://localhost:3001/api/users/2
+Content-Type: application/json
+
+{
+  "lastName": "Putin III",
+  "password": "Ukraine",
+  "email": "save@ukraine.com"
+}
+
+
+###
+# @name login
+POST http://localhost:3001/api/users/login
+Content-Type: application/json
+
+{
+  "email": "save@ukraine.com",
+  "password": "Ukraine"
+}
+
+###
+POST http://localhost:3001/api/users/seed
+
+###
+https://api.openweathermap.org/data/2.5/weather?q=New York&appid={{$dotenv OPENWEATHER_KEY}}
+
+###
+https://api.coinbase.com/v2/exchange-rates
+
+###
+https://maps.googleapis.com/maps/api/place/textsearch/json?query=University&key={{$dotenv GOOGLE_API_KEY_1}}

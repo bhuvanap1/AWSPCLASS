@@ -1,0 +1,43 @@
+GET http://localhost:3001/api/posts/
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+###
+GET http://localhost:3001/api/posts/wall/vp
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+###
+GET http://localhost:3001/api/posts/6257fccb2efcbef8bf5d99ed
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+###
+DELETE  http://localhost:3001/api/posts/6257fccb2efcbef8bf5d99ee
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+###
+POST http://localhost:3001/api/posts
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+
+    {
+        "src": "https://w2.chabad.org/media/images/1187/SvDB11878116.jpg?_i=_n504BC99DD0473598AAE3BCDC5D75568D",
+        "caption": "Of Mugs and Family Ties",
+        "owner": "newpaltz_benevolent",
+        "likes": [],
+        "comments": [],
+        "isPublic": true
+     }
+
+
+###
+PATCH http://localhost:3001/api/posts/6257fccb2efcbef8bf5d99ee
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido
+
+{
+    "owner": "newpaltz_benevolent"
+}
+
+###
+POST http://localhost:3001/api/posts/seed
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJWbGFkaW1pciIsImxhc3ROYW1lIjoiUHV0aW4gSUlJIiwiaGFuZGxlIjoicnVzc2lhbl9kaWN0YXRvciIsImVtYWlsIjoic2F2ZUB1a3JhaW5lLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjoyLCJpYXQiOjE2NDkwOTg1NDd9.snZEHgy0vMtqifYQyHavTGWLeMpTjoRbfAE1V1Y0ido

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Nav from './components/Nav.vue';
+
 </script>
 
 <template>
@@ -13,4 +14,5 @@ import Nav from './components/Nav.vue';
 </template>
 
 <style>
+
 </style>

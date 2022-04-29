@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { RouterLink } from "vue-router";
 import LoginBadge from './LoginBadge.vue';
+import Messages from './Messages.vue';
+
     
     const isOpen = ref(false);
 </script>
@@ -25,8 +27,11 @@ import LoginBadge from './LoginBadge.vue';
                 <router-link class="navbar-item" to="/">
                   Home
                 </router-link>
-                <router-link class="navbar-item" to="/messages">
-                  Messages
+                <router-link class="navbar-item" to="/Wall">
+                  Wall
+                </router-link>
+                <router-link class="navbar-item" to="/weather">
+                  Weather
                 </router-link>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
@@ -56,6 +61,8 @@ import LoginBadge from './LoginBadge.vue';
                     <login-badge />
                 </div>
 
+                <messages />
+
                 <div class="navbar-item">
                         <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
                           <span class="icon">
@@ -76,4 +83,5 @@ import LoginBadge from './LoginBadge.vue';
 </template>
 
 <style>
+
 </style>
