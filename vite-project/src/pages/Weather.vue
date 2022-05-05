@@ -32,6 +32,7 @@ import { reactive, ref } from 'vue';
             console.log(results);
             location.value = results![0];
         });
+
     });
 </script>
 
@@ -54,10 +55,11 @@ import { reactive, ref } from 'vue';
                 </tr>
             </tbody>
         </table>
-
-        {{ location.name }}
-        {{ location.geometry.location.lat() }}
-        {{ location.geometry.location.lng() }}
+        <div v-if="location && location.geometry">
+            {{ location.name }}
+            {{ location.geometry.location.lat() }}
+            {{ location.geometry.location.lng() }}
+        </div>
     </div>
 </template>
 

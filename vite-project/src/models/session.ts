@@ -5,14 +5,48 @@ import * as users from "../models/user";
 import { useMessages } from "./messages";
 import { api } from "./myFetch";
 import { defineStore } from "pinia";
+import { decodeJWT, loadScript } from "./utils";
 
 
 export const useSession = defineStore('session', {
     state: () => ({
-        user: null as users.User | null,
+        user: undefined as users.User | undefined,
         destinationUrl: null as string | null,
     }),
     actions: {
+        async GoogleLogin() {
+            await loadScript('https://accounts.google.com/gsi/client', 'google-signin');
+            const auth_client = google.accounts.oauth2.initTokenClient({
+                client_id: <string>import.meta.env.VITE_GOOGLE_CLIENT_ID,
+                scope: 'email profile',
+                callback: async x =>{
+                    const user = await fetch('https://www.googleapis.com/oauth2/v3/userinfo?alt=json',{
+                        headers: {
+                            Authorization: `Bearer ${x.access_token}`,
+                        },
+                    }).then(x => x.json());
+                    console.log(user);
+                    this.user = {
+                        id: user.sub,
+                        email: user.email,
+                        firstName: user.given_name,
+                        lastName: user.family_name,
+                        pic: user.picture,
+                        handle: user.email,
+                        password: '',
+                    }
+
+                    const calendar = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events',{
+                        headers: {
+                            Authorization: `Bearer ${x.access_token}`,
+                        },
+                    }).then(x => x.json());
+                    console.log(calendar);
+                }
+              });
+              auth_client.requestAccessToken();
+        },
+
         async Login(email: string, password: string) {
 
             const messages = useMessages();
@@ -42,7 +76,7 @@ export const useSession = defineStore('session', {
         },
         
         Logout() {
-            this.user = null;
+            this.user = undefined;
             router.push('/login');
         },
 
