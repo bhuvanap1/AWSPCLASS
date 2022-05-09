@@ -1,33 +1,32 @@
-
-import React, {useState} from 'react';
-//import { RouterLink } from "vue-router";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 //import LoginBadge from './LoginBadge.vue';
-//import Messages from './Messages.vue';
-  const NavLink=(props)=><a {...props}>{props.children}</a>;
-  const LoginBadge=()=><></>;
-  const Messages=()=><></>;
-  
-  
-  function Nav() {
-    const [isOpen, setIsOpen] = useState(true);
+import Messages from './Messages';
+
+    //const NavLink = (props) => <a {...props} >{props.children}</a>;
+    const LoginBadge = ()=><></>;
+    //const Messages = ()=><></>;
 
 
-    return (
-<nav className="navbar is-info" role="navigation" aria-label="main navigation">
+    function Nav() {
+        const [isOpen, setIsOpen] = useState(true);
+
+
+
+        return (    
+    <nav className="navbar is-info" role="navigation" aria-label="main navigation">
 
         <div className="container">
             <div className="navbar-brand">
               <a className="navbar-item" href="https://bulma.io">
                 <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
               </a>
-              {/*:className="{ 'is-active': isOpen }" click="isOpen = !isOpen"*/}
-              <a role="button" className={`navbar-burger ${isOpen ? 'is-active':''}`} onClick={()=> setIsOpen(!isOpen) } aria-label="menu" aria-expanded="false" >
+              <a role="button" className={`navbar-burger ${isOpen ? 'is-active' : ''}`} onClick={()=> setIsOpen( !isOpen ) } aria-label="menu" aria-expanded="false"  >
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
-            </div>
-            {/*:className="{ 'is-active': isOpen }"*/}
+            </div> 
             <div className={`navbar-menu ${isOpen && 'is-active'}`}  >
               <div className="navbar-start">
                 <NavLink className="navbar-item" to="/">
@@ -64,10 +63,10 @@ import React, {useState} from 'react';
 
             
                 <div className="navbar-item">
-                    <login-badge />
+                    <LoginBadge />
                 </div>
 
-                <messages />
+                <Messages />
 
                 <div className="navbar-item">
                         <a className="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
@@ -85,11 +84,8 @@ import React, {useState} from 'react';
             </div>
         </div>
       </nav>
-   );
-  }
-  
-  export default Nav;
-  
 
+    );
+}
 
-
+export default Nav;

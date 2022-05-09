@@ -1,22 +1,8 @@
-
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 
 @keyframes App-logo-spin {
   from {
@@ -25,4 +11,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.notification-component {
+    .icon {
+        font-size: 1.5em;
+    }
+    .navbar-dropdown {
+        width: max-content;
+        max-width: 300px;
+    }
+    .notification {
+        margin: .5rem;
+        width: calc(100% - 1rem);
+    }
+    .tag {
+        position: absolute;
+        font-size: .8em;
+        top: .5em;
+        right: 2.5em;
+        height: 1.5em;
+        padding: .5em;
+        border-radius: 50%;
+    }
 }

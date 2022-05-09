@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bulma';
 import '@fortawesome/fontawesome-free/css/all.css';
-import './assets/App.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
